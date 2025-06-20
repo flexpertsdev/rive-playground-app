@@ -1,4 +1,5 @@
 [build]
+  command = "if cd flutter; then version=$(<.flutter-version); echo Installing flutter $version; git clone https://github.com/flutter/flutter.git; cd flutter; git fetch --tags; git checkout $version; cd ..; export PATH=\"$PATH:`pwd`/flutter/bin\"; cd ..; else version=$(awk '/flutter:/ { getline; gsub(/[[:space:]]/, \"\"); print }' .metadata); echo Installing Flutter $version; git clone https://github.com/flutter/flutter.git; cd flutter; git fetch --tags; git checkout $version; cd ..; export PATH=\"$PATH:`pwd`/flutter/bin\"; fi && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release"
   publish = "build/web"
 
 [[redirects]]
